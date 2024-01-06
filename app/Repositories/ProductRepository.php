@@ -35,31 +35,13 @@ class ProductRepository
 
     public function getProductByUuid($products)
     {
-
+       //dd($products);
     return  DB::table($this->table)
                     ->where('token_company', $products['token_company'])
                     ->where('uuid', $products['uuid'])
                     ->first();
-
-
-    
     }
 
-
-    public function getProductsByCategories(string $idTenant, string $categories)
-    {
-        return DB::table($this->table)
-                    ->join('category_product', 'category_product.product_id', '=', 'products.id')
-                    ->join('categories', 'category_product.category_id', '=', 'categories.id')
-                    ->where('products.token_company', $idTenant)
-                    ->where('categories.token_company', $idTenant)
-                    ->where(function ($query) use ($categories) {
-                        if ($categories != [])
-                            $query->whereIn('categories.uuid', $categories);
-                    })
-                    ->select('products.*')
-                    ->get();
-    }
 
     public function getproductsBycategory(string $tenant, string $uuid)
     {

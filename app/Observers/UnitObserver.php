@@ -16,7 +16,7 @@ class UnitObserver
      */
     public function creating(Unit $unit)
     {
-        $unit->url = Str::kebab($unit->name);
+       
         $unit->uuid = Str::uuid();
     }
 
@@ -28,6 +28,6 @@ class UnitObserver
      */
     public function updating(Unit $category)
     {
-        $category->url = Str::kebab($category->name);
+      
     }
 }

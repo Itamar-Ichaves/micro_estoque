@@ -29,7 +29,7 @@ return new class extends Migration
             
             $table->string('tipo_produto_uuid')->nullable();
             
-            $table->string('categoria_uuid')->nullable();            
+            $table->string('category_uuid')->nullable();            
             
             
             $table->BigInteger('localizacao_uuid')->nullable();

@@ -40,9 +40,10 @@ class RepositoriesCategory
 
     public function getCategoryByUuid( $category)
     {
+        //dd( $category['token_company'],$category['category']);
         return$data = DB::table($this->table)
                     ->where('token_company', $category['token_company'])
-                    ->where('uuid', $category['uuid'])
+                    ->where('uuid', $category['category'])
                     ->first();
     }
 
@@ -50,7 +51,7 @@ class RepositoriesCategory
     {
         $data = [
 
-            'name' => $category['name'],
+            'nome' => $category['nome'],
             'token_company' => $category['token_company'],
             'description'=> $category['description']
         ];

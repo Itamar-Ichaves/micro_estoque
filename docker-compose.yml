@@ -15,44 +15,36 @@ services:
         depends_on:
             - redis
         networks:
-            - microsservice
+            - microestoque
 
     # nginx
     nginx:
         image: nginx:alpine
         restart: unless-stopped
         ports:
-            - "8100:80"
+            - "8101:80"
         volumes:
             - ./:/var/www
             - ./docker/nginx/:/etc/nginx/conf.d/
         networks:
-            - microsservice
+            - microestoque
 
-    pgsql:
-        image: 'postgres:13'
-        ports:
-            - '${FORWARD_DB_PORT:-5501}:5432'
+    
+ # db mysql
+    db:
+        image: mysql:5.7.22
+        restart: unless-stopped
         environment:
-            PGPASSWORD: '${DB_PASSWORD:-secret}'
-            POSTGRES_DB: '${DB_DATABASE}'
-            POSTGRES_USER: '${DB_USERNAME}'
-            POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
+            MYSQL_DATABASE: ${DB_DATABASE:-laravel}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
+            MYSQL_PASSWORD: ${DB_PASSWORD:-userpass}
+            MYSQL_USER: ${DB_USERNAME:-username}
         volumes:
-              - ".:/var/www/html"
-        networks:
-            - microsservice
-        healthcheck:
-            test: [ "CMD", "pg_isready", "-q", "-d", "${DB_DATABASE}", "-U", "${DB_USERNAME}" ]
-            retries: 3
-            timeout: 5s
-
-    memcached:
-        image: 'memcached:alpine'
+            - ./.docker/mysql/dbdata:/var/lib/mysql
         ports:
-            - '11212:11211'
+            - "3388:3306"
         networks:
-            - microsservice
+            - microestoque
 
 
     # queue
@@ -70,15 +62,15 @@ services:
         depends_on: 
             - redis
         networks: 
-            - microsservice
+            - microestoque
 
     # redis
     redis:
         image: redis:latest
         networks:
-            - microsservice
+            - microestoque
 
 networks:
-    microsservice:
-        name: microsservice
+    microestoque:
+        name: microestoque
         driver: bridge

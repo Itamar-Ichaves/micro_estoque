@@ -15,14 +15,14 @@ class StoreUpdteProductRepository
         $this->entity = $product;
     }
 
-    public function createProducts( $products)
+    public function createProducts($products)
     {
-     //dd($products);
+     dd($products);
         
         $data = [
 
-            'name' => $products['name'],
-            'category_uuid' => $products['category_uuid'],
+            'nome' => $products['nome'],
+            'category' => $products['category_uuid'],
             'unit_uuid' => $products['unit_uuid'],
             'token_company' => $products['token_company'],
             'sku' => $products['sku'],

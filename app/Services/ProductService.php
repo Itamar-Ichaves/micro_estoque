@@ -49,7 +49,7 @@ class ProductService
        return $this->productRepository->getProductsALL($uuid);
     }
 
-    public function getProductsByCategoryUuid($tenant, $uuid)
+    public function getProductsByCategoryUuid($products)
     {
        // $verificToken = $this->microTenantsServices->getTokenCompany($tenant);
 
@@ -60,7 +60,7 @@ class ProductService
        } */
 
 
-       return $this->productRepository->getProductByUuid($tenant, $uuid);
+       return $this->productRepository->getProductByUuid($products);
 
     //dd($iDtenant);
     
@@ -90,19 +90,19 @@ class ProductService
     function createProductsByTenant($products)
     {
       
-        $data_category = $this->repositoriesCategory->getCategoryByUuid($products->category_uuid);
-     // dd( $data_category );
+       $data_category = $this->repositoriesCategory->getCategoryByUuid($products);
+       //dd( $data_category );
 
        if (!isset($data_category->uuid)){
         return response()->json(['message' => 'Categoria Não existe'], 404);
        } 
 
 
-       $data_unit = $this->repositoriesunit->getUnitByUuid($products->unit_uuid);
+       $data_unit = $this->repositoriesunit->getUnitByUuid($products);
        
  
         if (!isset($data_unit->uuid)){
-         return response()->json(['message' => 'Unidade Não existe'], 404);
+         return response()->json(['message' => 'Unidade nao existe'], 404);
         } 
        
        /*

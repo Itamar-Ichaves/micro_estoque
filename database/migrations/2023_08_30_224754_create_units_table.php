@@ -15,7 +15,9 @@ return new class extends Migration
             $table->increments('id');
             $table->uuid('uuid')->unique();
             $table->string('token_company');
-            $table->string("unidade",50);
+            $table->string("nome",50);
+            $table->string("description",50);
+
             $table->timestamps();
         });
     }

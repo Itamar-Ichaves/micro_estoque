@@ -25,7 +25,7 @@ class StoreUpdateCategoryRepository
 
         $data = [
 
-            'name' => $category['name'],
+            'nome' => $category['nome'],
             'token_company' => $category['token_company'],
             'description'=> $category['description']
         ];

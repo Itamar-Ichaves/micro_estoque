@@ -17,8 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('token_company'); 
             $table->uuid('uuid')->unique();
-            $table->string('name');
-            $table->string('url');
+            $table->string('nome');
             $table->text('description');
             $table->timestamps();
         });

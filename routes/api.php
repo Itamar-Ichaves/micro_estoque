@@ -70,7 +70,7 @@ Route::delete('/unit/uuid', DeleteUnitController::class);
  * Route Products
  */
 Route::get('/products', GetProductsController::class);
-Route::get('/products/category/{uuid}', GetProductsByCategoryController::class);
+Route::get('/products/filter', GetProductsByCategoryController::class);
 Route::get('/products/uuid', GetProductsSpecificController::class);
 Route::post('/products', CreateProductsController::class);
 Route::put('/products/uuid', UpdateProductsController::class);

@@ -23,7 +23,7 @@ class CreateProductsController extends Controller
      */
     public function __invoke(TenantFormRequest $request)
     {
-       // dd($request);
+       //dd($request);
         $Product = $this->productService->createProductsByTenant($request);
 
         //$Product = $this->productService->createProductsByTenant($request->token_company, $request->category_uuid, $request->unit_uuid, $request->all());

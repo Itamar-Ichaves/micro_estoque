@@ -38,10 +38,12 @@ class RepositoriesUnit
      
     
 
-    public function getUnitByUuid(string $uuid)
+    public function getUnitByUuid( $unit)
     {
+        //dd($unit['unit']);
         return$data = DB::table($this->table)
-                    ->where('uuid', $uuid)
+        ->where('token_company', $unit['token_company'])
+                    ->where('uuid', $unit['unit'])
                     ->first();
     }
 
@@ -50,7 +52,7 @@ class RepositoriesUnit
        
         $data = [
 
-            'name' => $unit['name'],
+            'nome' => $unit['nome'],
             'token_company' => $unit['token_company'],
             'description'=> $unit['description']
         ];

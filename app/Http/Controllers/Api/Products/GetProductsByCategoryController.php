@@ -21,8 +21,8 @@ class GetProductsByCategoryController extends Controller
      */
     public function __invoke(Request $request)
     {
-        dd($request);
-       return $this->productService->getProductsByCategoryUuid($request->token_company, $request->category);
+    
+       return $this->productService->getProductsByCategoryUuid($request->all());
        // dd($request);
     }
 }
