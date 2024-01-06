@@ -43,7 +43,7 @@ class RepositoriesCategory
         //dd( $category['token_company'],$category['category']);
         return$data = DB::table($this->table)
                     ->where('token_company', $category['token_company'])
-                    ->where('uuid', $category['category'])
+                    ->where('uuid', $category['category_uuid'])
                     ->first();
     }
 

@@ -43,7 +43,7 @@ class RepositoriesUnit
         //dd($unit['unit']);
         return$data = DB::table($this->table)
         ->where('token_company', $unit['token_company'])
-                    ->where('uuid', $unit['unit'])
+                    ->where('uuid', $unit['unit_uuid'])
                     ->first();
     }
 
