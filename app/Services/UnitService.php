@@ -21,16 +21,16 @@ class UnitService
         //$this->storeUpdateUnittRepository = $storeUpadteUnittRepository;
     }
 
-    public function getUnitsByUuid(string $uuid)
+    public function getUnitsByTenant($uuid)
     {
         //$tenant = $this->microTenantService->getTokenCompany($uuid);
 
-        return $this->unitRepository->getUnitsByTenantId($uuid);
+        return $this->unitRepository->getUnitsByTenant($uuid);
        /// dd( $tenant);
 
     }
 
-    public function getUnitByUuid(string $uuid)
+    public function getUnitByUuid($uuid, $token_company)
     {
         return $this->unitRepository->getUnitByUuid($uuid);
     }
@@ -38,10 +38,8 @@ class UnitService
     function createUnitByTenant($unit)
     {
         
-        
-        $this->unitRepository->createUnit($unit);
+        return $this->unitRepository->createUnit($unit);
 
-        return $unit;
     }
 
     function updateUnitByTenant($unit)
@@ -54,9 +52,9 @@ class UnitService
        // dd($unit,  $identify);;
     }
 
-    public function deleteUnit($unit)
+    public function deleteUnit($uuid, $token_company)
     {
-         return $this->unitRepository->deleteUnit($unit);
+         return $this->unitRepository->deleteUnit($uuid, $token_company);
        
     }
 

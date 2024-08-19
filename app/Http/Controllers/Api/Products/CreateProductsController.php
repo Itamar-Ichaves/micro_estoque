@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Api\Products;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\TenantFormRequest;
+use App\Http\Controllers\Controller; 
 use App\Http\Resources\ProductResource;
 use App\Services\ProductService;
-use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class CreateProductsController extends Controller
 {
@@ -21,15 +20,17 @@ class CreateProductsController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(TenantFormRequest $request)
+    public function __invoke(Request $request)
     {
-       //dd($request);
-        $Product = $this->productService->createProductsByTenant($request);
+             
+        
+        $product = $this->productService->createProductsByTenant($request->all());
 
-        //$Product = $this->productService->createProductsByTenant($request->token_company, $request->category_uuid, $request->unit_uuid, $request->all());
-
-        broadcast(new ProductResource($Product));
-
-        return Response($Product);
+  
+        return response()->json([
+            'success' => true,
+            'data' => new ProductResource($product),
+            'message' => 'Product created successfully'
+        ], Response::HTTP_CREATED);
     }
 }

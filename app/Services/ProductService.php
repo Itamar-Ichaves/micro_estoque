@@ -2,154 +2,82 @@
 
 namespace App\Services;
 
-
 use App\Repositories\ProductRepository;
 use App\Repositories\RepositoriesCategory;
 use App\Repositories\RepositoriesUnit;
 use App\Repositories\StoreUpdteProductRepository;
 use App\Services\MicroTenantsServices;
-use Symfony\Component\HttpFoundation\Test\Constraint\ResponseStatusCodeSame;
 
 class ProductService
 {
-    protected $repositoriesunit, $repositoriesCategory, $productRepository, $storeUpdteProductRepository, $microTenantsServices;
+    protected $repositoriesUnit;
+    protected $repositoriesCategory;
+    protected $productRepository;
+    protected $storeUpdateProductRepository;
+    protected $microTenantsServices;
 
     public function __construct(
         ProductRepository $productRepository,
-        StoreUpdteProductRepository $storeUpdteProductRepository,
+        StoreUpdteProductRepository $storeUpdateProductRepository,
         MicroTenantsServices $microTenantsServices,
         RepositoriesCategory $repositoriesCategory,
-        RepositoriesUnit $repositoriesunit
-
+        RepositoriesUnit $repositoriesUnit
     ) {
         $this->productRepository = $productRepository;
-        $this->storeUpdteProductRepository = $storeUpdteProductRepository;
+        $this->storeUpdateProductRepository = $storeUpdateProductRepository;
         $this->microTenantsServices = $microTenantsServices;
         $this->repositoriesCategory = $repositoriesCategory;
-        $this->repositoriesunit = $repositoriesunit;
-
-
+        $this->repositoriesUnit = $repositoriesUnit;
     }
 
-    public function getProductsByTenantUuid(string $uuid)
+    public function getProductsByTenantUuid(string $tokenCompany)
     {
-      /* $tenant = $this->microTenantsServices->getTokenCompany($uuid);
-
-       //$category = $this->categoryRepository->getCategoryByUuid($uuid);
-
-       //dd ($tenant);
-       if ($tenant == 'statusCode: 200') {
-       return $this->productRepository->getProductsALL($uuid);
-      
-       } else {
-        return response()->json(['message' => 'token Company Not Found'], 404);
-       }
-       //dd( $uuid);*/
-
-       return $this->productRepository->getProductsALL($uuid);
+        return $this->productRepository->getAllProductsByTenant($tokenCompany);
     }
 
-    public function getProductsByCategoryUuid($products)
+    public function getProductsByCategory($data)
     {
-       // $verificToken = $this->microTenantsServices->getTokenCompany($tenant);
-
-      /* if ($verificToken = 'statusCode: 200') {
-        return $this->productRepository->getProductByUuid($tenant, $uuid_category);
-       } else {
-        return response()->json(['message' => 'Not Found'], 404);
-       } */
-
-
-       return $this->productRepository->getProductByUuid($products);
-
-    //dd($iDtenant);
+        // Obtém a categoria pelo UUID
+        $category = $this->repositoriesCategory->getCategoryByUuid($data);
     
-    }
-
- 
-
-    public function getProductByUuid($products)
-    {
-        //$verificToken = $this->microTenantsServices->getTokenCompany($tenant);
-
-       
-        //$category = $this->categoryRepository->getCategoryByUuid($uuid);
- 
-        /* if ($verificToken == 'statusCode: 200') {
-            return $this->productRepository->getProductByUuid($tenant, $uuid);
-            } else {
-             return response()->json(['message' => 'Not Found'], 404);
-            } */
-    
-            
-       return $this->productRepository->getProductByUuid($products);
-         
-        
-    }
-
-    function createProductsByTenant($products)
-    {
-      
-       $data_category = $this->repositoriesCategory->getCategoryByUuid($products);
-       //dd( $data_category );
-
-       if (!isset($data_category->uuid)){
-        return response()->json(['message' => 'Categoria Não existe'], 404);
-       } 
-
-
-       $data_unit = $this->repositoriesunit->getUnitByUuid($products);
-       
- 
-        if (!isset($data_unit->uuid)){
-         return response()->json(['message' => 'Unidade nao existe'], 404);
-        } 
-       
-       /*
-       $verificToken = $this->microTenantsServices->getTokenCompany($tenant);
-       //dd( $verificToken);
-
-        if ($verificToken = 'statusCode: 200'){
-        return  $this->storeUpdteProductRepository->createProducts($tenant, $products, $data_category->uuid);
-       } else {
-        return response()->json(['message' => 'Token Company Not Found'], 404);
-       }
-       */
-      //dd( $data_category['uuid']);
-
-      //dd($products);
-    
-
-      return  $this->storeUpdteProductRepository->createProducts($products);
-    
-    }
-
-    function updateProductsByTenant( $product)
-    {
-       /* $verificToken = $this->microTenantsServices->getTokenCompany($tenant);
-
-        if ($verificToken = 'statusCode: 200') {
-       return $this->productRepository->updateProductByTenant($product, $tenant, $uuid);
-        } else {
-            return response()->json(['message' => 'Not Found'], 404);
-        }*/
-
-        return $this->productRepository->updateProductByTenant($product);
-
-    }
-
-    public function deleteProduct($product)
-    {  
-        /*
-        $verificToken = $this->microTenantsServices->getTokenCompany($tenant);
-
-        if ($verificToken = 'statusCode: 200') {
-         return $this->productRepository->deleteProduct($tenant, $uuid);
-        } else {
-            return response()->json(['message' => 'Not Found'], 404);
+        // Verifica se a categoria existe
+        if (!$category) {
+            // Retorna uma resposta adequada se a categoria não for encontrada
+            return [
+                'success' => false,
+                'message' => 'Category not found'
+            ];
         }
-        */
+    
+        // Obtém produtos associados à categoria
+        $products = $this->productRepository->getProductsByCategory($data);
+    
+        // Retorna os produtos encontrados
+        return [
+            'success' => true,
+            'data' => $products
+        ];
+    }
+    
 
-        return $this->productRepository->deleteProduct($product);
+    public function getProductByUuid($productUuid, $tokenCompany)
+    {
+        return $this->productRepository->getProductByUuid($productUuid, $tokenCompany);
+    }
+
+    public function createProductsByTenant(array $productData)
+    {
+ 
+        return $this->productRepository->createProduct($productData);
+    }
+
+    public function updateProductsByTenant(array $productData)
+    {
+        return $this->productRepository->updateProductByTenant($productData);
+    }
+
+    public function deleteProduct($productUuid, $tokenCompany)
+    {
+        return $this->productRepository->deleteProduct($productUuid, $tokenCompany);
     }
 }

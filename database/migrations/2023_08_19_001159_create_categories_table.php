@@ -14,11 +14,18 @@ class CreateCategoriesTable extends Migration
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('token_company'); 
-            $table->uuid('uuid')->unique();
+            // Primary key as UUID
+            $table->uuid('id')->primary();
+            
+            // UUID columns
+            $table->uuid('token_company');
+            //$table->uuid('emitente');
+            
+            // Other columns
             $table->string('nome');
             $table->text('description');
+            
+            // Timestamps
             $table->timestamps();
         });
     }

@@ -3,31 +3,30 @@
 namespace App\Http\Controllers\Api\Products;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\TenantFormRequest;
 use App\Http\Resources\ProductResource;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class GetProductsSpecificController extends Controller
 {
-
     protected $productService;
 
-    function __construct(ProductService $categoryService)
+    public function __construct(ProductService $productService)
     {
-        $this->productService = $categoryService;
+        $this->productService = $productService;
     }
-    
+
     /**
      * Handle the incoming request.
      */
     public function __invoke(Request $request)
     {
-       // dd($request);
-       
-       $products = $this->productService->getProductByUuid($request->all());
+        $productUuid = $request->input('uuid');
+        $tokenCompany = $request->input('token_company');
 
-       return response()->json([$products ], http_response_code(200));
-    
+        $product = $this->productService->getProductByUuid($productUuid, $tokenCompany);
+
+        return new ProductResource($product);
     }
 }

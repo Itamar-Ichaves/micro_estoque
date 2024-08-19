@@ -9,10 +9,13 @@ class Unit extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nome', 'description', 'token_company'];
+    protected $fillable = [
+        'nome', 
+        'description', 
+        'token_company',
+        'sigla',
+        'emitente'
+    ];
 
-    public function units()
-    {
-        return $this->belongsToMany(Product::class);
-    }
+    public $timestamps = true; // Certifique-se de que os timestamps estão habilitados
 }

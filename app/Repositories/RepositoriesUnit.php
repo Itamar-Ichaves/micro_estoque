@@ -4,6 +4,8 @@ namespace App\Repositories;
 
 use App\Models\Unit;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+ 
 
 class RepositoriesUnit
 {
@@ -27,41 +29,40 @@ class RepositoriesUnit
             ->get();
     }
 
-    public function getUnitsByTenantId(string $idTenant)
+    public function getUnitsByTenant(string $idTenant)
     {
         return DB::table($this->table)
                     ->where('token_company', $idTenant)
                     ->paginate();
 
-        //dd($idTenant);
+      
     }
      
     
 
-    public function getUnitByUuid( $unit)
+    public function getUnitByUuid( $data)
     {
         //dd($unit['unit']);
         return$data = DB::table($this->table)
-        ->where('token_company', $unit['token_company'])
-                    ->where('uuid', $unit['unit_uuid'])
+        ->where('token_company', $data["token_company"])
+                    ->where('uuid', $data['unit_uuid'])
                     ->first();
     }
 
     public function createUnit($unit)
     {
-       
+   
         $data = [
-
             'nome' => $unit['nome'],
             'token_company' => $unit['token_company'],
-            'description'=> $unit['description']
+            'description'=> $unit['description'],
+            'sigla' => $unit['sigla']
         ];
+         
+        $unities = $this->entity->create($data);
 
-        $unit = $this->entity->create($data);
-
-        //dd($unit);
-        //dd($data);
-        return $unit;
+        return $unities;
+        
     }
 
     function updateUnitByTenant($unit)
@@ -73,15 +74,13 @@ class RepositoriesUnit
         ->update($unit);
 
         return $data_updated;
-        // dd($tenant, $unit, $uuid);
     }
 
-    public function deleteUnit($unit)
+    public function deleteUnit($uuid, $token_company)
     {
         return DB::table($this->table)
-        ->where('token_company', $unit['token_company'])
-        ->where('uuid', $unit['uuid'])
+        ->where('token_company', $token_company)
+        ->where('uuid', $uuid)
         ->delete();
-        //dd($tenant, $uuid);
     }
 }

@@ -12,10 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('statuses', function (Blueprint $table) {
-            $table->id();
-            $table->string('token_company');     
+          
+            $table->uuid('id')->primary();
+            $table->uuid('token_company'); 
+            $table->uuid('emitente');   
+
             $table->string("title",40);
-            $table->uuid('uuid')->unique();
             $table->timestamps();
         });
     }

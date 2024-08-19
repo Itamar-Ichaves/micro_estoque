@@ -77,4 +77,4 @@ Route::put('/products/uuid', UpdateProductsController::class);
 Route::delete('/products/uuid', DeleteProductsController::class);
 
 
-Route::get('/', [TesteController::class, 'FunctionName']);
+Route::get('/', [TesteController::class, 'teste']);

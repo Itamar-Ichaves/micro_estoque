@@ -15,9 +15,8 @@ class CategoryObserver
      */
     public function creating(Category $category)
     {
-        $category->uuid = Str::uuid();
+        $category->id = (string) Str::uuid();
     }
-
     /**
      * Handle the plan "updating" event.
      *

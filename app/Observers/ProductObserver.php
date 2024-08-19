@@ -15,7 +15,7 @@ class ProductObserver
      */
     public function creating(Product $product)
     {
-        $product->uuid = Str::uuid();
+        $product->id = (string) Str::uuid();
     }
 
     /**

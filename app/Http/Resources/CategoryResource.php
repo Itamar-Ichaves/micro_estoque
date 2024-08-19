@@ -14,8 +14,12 @@ class CategoryResource extends JsonResource
      */
     public function toArray($request)
     {
-        
-        
-        return response()->json(http_response_code(200));
+        return [
+            'id' => $this->id, 
+            'token_company' => $this->token_company, 
+           // 'emitente' => $this->emitente,  
+            'nome' => $this->nome, 
+            'description' => $this->description 
+        ];
     }
 }

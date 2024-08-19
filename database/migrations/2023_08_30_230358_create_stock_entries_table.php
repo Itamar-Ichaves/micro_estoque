@@ -12,12 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('stock_entries', function (Blueprint $table) {
-            $table->id();
+
+            $table->uuid('id')->primary();
+            $table->uuid('token_company'); 
+            $table->uuid('emitente');   
+
             $table->timestamps();
             $table->integer("location_uuid");
             $table->string("product_uuid");
-            $table->uuid('uuid')->unique();
-            $table->string('token_company');
         });
     }
 

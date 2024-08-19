@@ -21,25 +21,25 @@ class CategoryService
         //$this->storeUpdateCategorytRepository = $storeUpadteCategorytRepository;
     }
 
-    public function getCategoriesByUuid(string $uuid)
+    public function getCategoriesByTenant(string $uuid)
     {
         //$tenant = $this->microTenantService->getTokenCompany($uuid);
 
         return $this->categoryRepository->getCategoriesByTenantId($uuid);
-       /// dd( $tenant);
+        
 
     }
 
-    public function getCategoryByUuid($category)
+    public function getCategoryByUuid($category, $tokenCompany)
     {
-        return $this->categoryRepository->getCategoryByUuid($category);
+        return $this->categoryRepository->getCategoryByUuid($category, $tokenCompany);
     }
 
     function createCategoryByTenant($category)
     {
-        $this->categoryRepository->createCategory($category);
+        return $this->categoryRepository->createCategory($category);
 
-        return $category;
+    
     }
 
     function updateCategoryByTenant( $category)
@@ -52,9 +52,9 @@ class CategoryService
        // dd($category,  $identify);;
     }
 
-    public function deleteCategory($category)
+    public function deleteCategory($categoryUuid, $tokenCompany)
     {
-         return $this->categoryRepository->deleteCategory($category);
+         return $this->categoryRepository->deleteCategory($categoryUuid, $tokenCompany);
        
     }
 

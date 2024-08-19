@@ -16,8 +16,7 @@ class UnitObserver
      */
     public function creating(Unit $unit)
     {
-       
-        $unit->uuid = Str::uuid();
+        $unit->id = (string) Str::uuid();
     }
 
     /**

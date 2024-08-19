@@ -12,13 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('units', function (Blueprint $table) {
-            $table->increments('id');
-            $table->uuid('uuid')->unique();
-            $table->string('token_company');
+          
+            $table->uuid('id')->primary();
+            $table->uuid('token_company'); 
+            $table->uuid('emitente')->nullable();
+             
+
             $table->string("nome",50);
-            $table->string("description",50);
+            $table->string("sigla",50);
+            $table->string("description",50)->nullable();
 
             $table->timestamps();
+
+            
         });
     }
 

@@ -14,19 +14,21 @@ class GetUnitSpecificController extends Controller
 
     function __construct(UnitService $UnitsService)
     {
-        $this->UnitsService = $categoryService;
+        $this->UnitsService = $UnitsService;
     }
     
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request, $identify)
+    public function __invoke(Request $request)
     {
-        if (!$category = $this->categoryService->getUnitByUuid($identify)) {
-            return response()->json(['message' => 'Unit Not Found'], 404);
-        }
+        $uuid = $request->input('uuid');
+        $token_company = $request->input('token_company');
+        
+        $unit = $this->UnitsService->getUnitByUuid($uuid, $token_company);
+        
 
-       return response()->json($category);
+       return New UnitResource($unit);
 
     }
 }

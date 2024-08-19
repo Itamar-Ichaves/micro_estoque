@@ -3,20 +3,17 @@
 namespace App\Http\Controllers\Api\Category;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\TenantFormRequest;
-use App\Models\Category;
 use App\Services\CategoryService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Response;
 
 class DeleteCategoriesController extends Controller
 {
-    protected $repository;
+    protected $categoryService;
 
-    public function __construct(CategoryService $category)
+    public function __construct(CategoryService $categoryService)
     {
-        $this->repository = $category;
+        $this->categoryService = $categoryService;
     }
 
     /**
@@ -24,7 +21,14 @@ class DeleteCategoriesController extends Controller
      */
     public function __invoke(Request $request)
     {
-          $this->repository->deleteCategory($request->all());
+        $categoryUuid = $request->input('uuid');
+        $tokenCompany = $request->input('token_company');
+        
+        $this->categoryService->deleteCategory($categoryUuid, $tokenCompany);
 
+        return response()->json([
+            'success' => true,
+            'message' => 'Category deleted successfully'
+        ], Response::HTTP_OK);
     }
 }

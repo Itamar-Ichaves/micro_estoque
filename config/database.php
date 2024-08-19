@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'pgsql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -74,8 +74,10 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
-            'search_path' => 'public',
-            'sslmode' => 'prefer',
+            'schema' => 'public',
+            'sslmode' => env('DB_SSLMODE', 'prefer'),
+
+
         ],
 
         'sqlsrv' => [
@@ -92,6 +94,18 @@ return [
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
+
+        'mongodb' => [
+            'driver'   => 'mongodb',
+            'host'     => env('DB_HOST', '127.0.0.1'),
+            'port'     => env('DB_PORT', 27017),
+            'database' => env('DB_DATABASE'),
+            'username' => env('DB_USERNAME'),
+            'password' => env('DB_PASSWORD'),
+            'options'  => [
+            'database' => env('DB_AUTHENTICATION_DATABASE', 'admin'), // O banco de dados de autenticação padrão é 'admin'
+    ],
+],
 
     ],
 

@@ -4,83 +4,68 @@ namespace App\Repositories;
 
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class RepositoriesCategory
 {
+    protected $model;
     protected $table;
-    protected $entity;
 
-    public function __construct( 
-        Category $categories,
-    )
+    public function __construct(Category $category)
     {
+        $this->model = $category;
         $this->table = 'categories';
-        $this->entity = $categories;
     }
 
     public function getCategoriesByTenantUuid(string $uuid)
     {
-        return DB::table($this->table)
-            ->join('tenants', 'tenants.id', '=', 'categories.tenant_id')
-            ->where('tenants.uuid', $uuid)
-            ->select('categories.*')
+        return $this->model
+            ->where('token_company', $uuid) // Assumindo que 'token_company' é usado para o filtro de tenant
             ->get();
     }
 
     public function getCategoriesByTenantId(string $idTenant)
     {
-        return DB::table($this->table)
-                    ->where('token_company', $idTenant)
-                    ->paginate();
-
-        //dd($idTenant);
+        return $this->model
+            ->where('token_company', $idTenant)
+            ->paginate();
     }
-     
-    
 
-    public function getCategoryByUuid( $category)
+    public function getCategoryByUuid(string $uuid)
     {
-        //dd( $category['token_company'],$category['category']);
-        return$data = DB::table($this->table)
-                    ->where('token_company', $category['token_company'])
-                    ->where('uuid', $category['category_uuid'])
-                    ->first();
+        return $this->model
+            ->where('id', $uuid) // Use 'id' em vez de 'uuid'
+            ->first();
     }
 
-    public function createCategory($category)
+    public function createCategory(array $category)
     {
         $data = [
-
-            'nome' => $category['nome'],
+           
             'token_company' => $category['token_company'],
-            'description'=> $category['description']
+            'description' => $category['description'],
+            'nome' => $category['nome'],
         ];
+    
+        $categories = $this->model->create($data);
 
-        $category = $this->entity->create($data);
-
-        //dd($category);
-        //dd($data);
-        return $category;
+        return $categories;
+       
+    }
+    
+    public function updateCategoryByTenant(array $data)
+    {
+        return $this->model
+            ->where('token_company', $data['token_company'])
+            ->where('id', $data['id'])
+            ->update($data);
     }
 
-    function updateCategoryByTenant(array $category)
+    public function deleteCategory(string $categoryUuid, string $tokenCompany)
     {
-
-        return DB::table($this->table)
-        ->where('token_company', $category['token_company'])
-        ->where('uuid', $category['uuid'])
-        ->update($category);
-
-
-        // dd($tenant, $category, $uuid);
-    }
-
-    public function deleteCategory($category)
-    {
-        return DB::table($this->table)
-        ->where('token_company', $category['token_company'])
-        ->where('uuid', $category['uuid'])
-        ->delete();
-        //dd($tenant, $uuid);
+        return $this->model
+            ->where('token_company', $tokenCompany)
+            ->where('id', $categoryUuid)
+            ->delete();
     }
 }

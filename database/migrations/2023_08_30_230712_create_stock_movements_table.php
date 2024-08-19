@@ -12,9 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('stock_movements', function (Blueprint $table) {
-            $table->id();
-            $table->uuid('uuid')->unique();
-            $table->string('token_company');
+           
+            $table->uuid('id')->primary();
+            $table->uuid('token_company'); 
+            $table->uuid('emitente');   
+
             $table->string("location_uuid");
             $table->string("movement_type_uuid");
             $table->string("products_uuid");

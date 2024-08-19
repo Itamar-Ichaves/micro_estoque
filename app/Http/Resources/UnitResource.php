@@ -16,6 +16,11 @@ class UnitResource extends JsonResource
     {
         
         
-        return response()->json(http_response_code(200));
+        return [
+            "id"=> $this->id,
+            "nome"=> $this->nome,
+            "description"=> $this->description,
+            'sigla' => $this->sigla
+        ];
     }
 }

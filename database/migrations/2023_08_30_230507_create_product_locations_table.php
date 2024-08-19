@@ -12,13 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('product_locations', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->uuid('uuid')->unique();
-            $table->string('token_company');    
+   
+
+            $table->uuid('id')->primary();
+            $table->uuid('token_company'); 
+            $table->uuid('emitente');     
             $table->string("product_uuid");
             $table->string("location_uuid");
             $table->integer("stock")->default(0);
+
+
+            
+            $table->timestamps();
             
             
         });
