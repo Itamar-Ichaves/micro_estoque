@@ -1,0 +1,739 @@
+{
+	"info": {
+		"_postman_id": "c0e74891-7d12-439f-bdea-e95fbfb08530",
+		"name": "microEstoque",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12295968"
+	},
+	"item": [
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"c6e8f9c5-5b6b-4e78-bb8b-2d5a6b6e29c0\",\n    \"token_company\": \"6d69fccc-16a9-463a-9d3d-9e169f77e0e8\",\n    \"emitente\": \"5c1ee940-5e58-4032-b9c2-e75cf8ee3a98\",\n    \"nome\": \"Produto Exemplo\",\n    \"gtin\": \"1234567890123\",\n    \"codigo_barra\": \"987654321012\",\n    \"sku\": \"SKU123456\",\n    \"gtin_trib\": \"123456789012\",\n    \"imagem\": \"http://example.com/imagem.jpg\",\n    \"origem\": \"Nacional\",\n    \"usa_grade\": \"S\",\n    \"status_uuid\": \"ab7b2f36-0f73-4b2a-b5e0-0a67b787b2b4\",\n    \"tipo_produto_uuid\": \"e8d22f47-5b3c-43e6-8f34-5b46d8b5fcd4\",\n    \"category_uuid\": \"bcb5d7f8-1b6d-44b4-94e8-88c7e7d83e55\",\n    \"localizacao_uuid\": \"d3c7d8f6-45f3-4b8b-8b92-74c75b52de95\",\n    \"unit_uuid\": \"d1b7bff5-4c2d-4b8d-9cbe-5b8676a4f6be\",\n    \"perc_gni\": 5.00,\n    \"valor_partida\": 100.00,\n    \"perc_gnn\": 2.50,\n    \"perc_glp\": 1.00,\n    \"codigo_anp\": \"ANP123456\",\n    \"unidade_pdv\": \"Unidade\",\n    \"referencia\": \"REF12345\",\n    \"qtde_venda\": 50.00,\n    \"fragmentacao_qtde\": 10.00,\n    \"fragmentacao_unidade\": \"Unidade\",\n    \"fragmentacao_valor\": 5.00,\n    \"valor_venda_atacado\": 80.00,\n    \"valor_atacado_apartir\": 10,\n    \"comissao\": 10.00,\n    \"valor_maior\": 90.00,\n    \"valor_venda\": 100.00,\n    \"valor_custo\": 70.00,\n    \"margem_lucro\": 30.00,\n    \"custo_medio\": 60.00,\n    \"validade\": \"2024-12-31\",\n    \"ultima_compra\": \"2024-08-01\",\n    \"estoque_minimo\": 10.00,\n    \"estoque_maximo\": 100.00,\n    \"estoque_inicial\": 20.00,\n    \"estoque_atual\": 50.00,\n    \"cfop\": \"5102\",\n    \"ncm\": \"852585258\",\n    \"cest\": \"51025\",\n    \"cbenef\": \"BEN123\",\n    \"indescala\": \"S\",\n    \"cnpjfabricante\": \"12345678000195\",\n    \"pDif\": 2.00,\n    \"pMVAST\": 5.00,\n    \"pRedBC\": 1.00,\n    \"pRedBCST\": 1.50,\n    \"pICMS\": 7.00,\n    \"pPIS\": 1.65,\n    \"pCOFINS\": 7.60,\n    \"pIPI\": 5.00,\n    \"aliquotapis\": 1.65,\n    \"aliquotacofins\": 7.60,\n    \"aliquotaipi\": 5.00,\n    \"tributado_icms\": \"S\",\n    \"tributado_ipi\": \"S\",\n    \"tributado_pis\": \"S\",\n    \"tributado_cofins\": \"S\",\n    \"unidade_tributavel\": \"Unidade\",\n    \"quantidade_tributavel\": 50.00,\n    \"produto_loja\": \"S\",\n    \"produto_delivery\": \"S\",\n    \"controlar_estoque\": \"S\",\n    \"descricao\": \"Descrição do produto exemplo.\",\n    \"destaque\": \"S\",\n    \"cep\": \"12345678\",\n    \"num_volume\": 1,\n    \"largura\": 10.00,\n    \"comprimento\": 15.00,\n    \"altura\": 20.00,\n    \"peso_liquido\": 0.500,\n    \"peso_bruto\": 0.600\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8006/api/products?token_company=6d69fccc-16a9-463a-9d3d-9e169f77e0e8&category_uuid=d5bd55a6-f11f-4028-9b94-43b8d8519bf8&unit_uuid=d7c82127-2954-4a95-a931-788fd5f50391&emitente_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8006",
+							"path": [
+								"api",
+								"products"
+							],
+							"query": [
+								{
+									"key": "token_company",
+									"value": "6d69fccc-16a9-463a-9d3d-9e169f77e0e8"
+								},
+								{
+									"key": "category_uuid",
+									"value": "d5bd55a6-f11f-4028-9b94-43b8d8519bf8"
+								},
+								{
+									"key": "unit_uuid",
+									"value": "d7c82127-2954-4a95-a931-788fd5f50391"
+								},
+								{
+									"key": "emitente_id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update products",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"mudei 6\",\n    \"price\": \"10\",\n    \"description\": \"teste\",\n    \"sku\": 1,\n    \"cfop_interno\": 5102,\n    \"cfop_externo\": 6102,\n    \"cst_csosn\": 102,\n    \"cst_pis\": 49,\n    \"cst_cofins\": 49,\n    \"cst_ipi\": 49, \n    \"ncm\": \"220220033\",\n    \"cest\": \"1235\",\n    \"bar_code\": 123456789,\n    \"anp_code\": null,\n    \"perc_glp\": null,\n    \"perc_gni\": null\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8100/api/products/uuid?uuid=aff5bc88-54fd-46b9-84ea-887fe9002187&token_company=c855edb0-7b9b-4a2b-b141-83c79e403fb3&category_uuid=03d5eae3-fa0c-47f2-ad0f-da3ec6ee6404&unit_uuid=aff5bc88-54fd-46b9-84ea-887fe9002187",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8100",
+							"path": [
+								"api",
+								"products",
+								"uuid"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "aff5bc88-54fd-46b9-84ea-887fe9002187"
+								},
+								{
+									"key": "token_company",
+									"value": "c855edb0-7b9b-4a2b-b141-83c79e403fb3"
+								},
+								{
+									"key": "category_uuid",
+									"value": "03d5eae3-fa0c-47f2-ad0f-da3ec6ee6404"
+								},
+								{
+									"key": "unit_uuid",
+									"value": "aff5bc88-54fd-46b9-84ea-887fe9002187"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get specific products for category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8100/api/products/category/182151b3-072a-4b13-a72b-f32b7df00efb?uuid=03d5eae3-fa0c-47f2-ad0f-da3ec6ee6404&token_company=c855edb0-7b9b-4a2b-b141-83c79e403fb3&category_uuid=182151b3-072a-4b13-a72b-f32b7df00efb",
+							"host": [
+								"localhost"
+							],
+							"port": "8100",
+							"path": [
+								"api",
+								"products",
+								"category",
+								"182151b3-072a-4b13-a72b-f32b7df00efb"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "03d5eae3-fa0c-47f2-ad0f-da3ec6ee6404"
+								},
+								{
+									"key": "token_company",
+									"value": "c855edb0-7b9b-4a2b-b141-83c79e403fb3"
+								},
+								{
+									"key": "category_uuid",
+									"value": "182151b3-072a-4b13-a72b-f32b7df00efb"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get All",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8100/api/products/?token_company=c855edb0-7b9b-4a2b-b141-83c79e403fb3",
+							"host": [
+								"localhost"
+							],
+							"port": "8100",
+							"path": [
+								"api",
+								"products",
+								""
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "82355fa9-b744-4dca-9ed8-5ec92bde0b86",
+									"disabled": true
+								},
+								{
+									"key": "token_company",
+									"value": "c855edb0-7b9b-4a2b-b141-83c79e403fb3"
+								},
+								{
+									"key": "category_uuid",
+									"value": "182151b3-072a-4b13-a72b-f32b7df00efb",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get specific products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8100/api/products/uuid/?uuid=82355fa9-b744-4dca-9ed8-5ec92bde0b86&token_company=c855edb0-7b9b-4a2b-b141-83c79e403fb3",
+							"host": [
+								"localhost"
+							],
+							"port": "8100",
+							"path": [
+								"api",
+								"products",
+								"uuid",
+								""
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "82355fa9-b744-4dca-9ed8-5ec92bde0b86"
+								},
+								{
+									"key": "token_company",
+									"value": "c855edb0-7b9b-4a2b-b141-83c79e403fb3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "categories",
+			"item": [
+				{
+					"name": "store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"teste 9\",\n    \"description\": \"teste 9\"   \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8006/api/categories?token_company=6d69fccc-16a9-463a-9d3d-9e169f77e0e8",
+							"host": [
+								"localhost"
+							],
+							"port": "8006",
+							"path": [
+								"api",
+								"categories"
+							],
+							"query": [
+								{
+									"key": "token_company",
+									"value": "6d69fccc-16a9-463a-9d3d-9e169f77e0e8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get specifi categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8101/api/categories/uuid/?uuid=64ac9317-dc8a-4f12-a4d7-aecddcdeb4b8&token_company=6d69fccc-16a9-463a-9d3d-9e169f77e0e8",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"api",
+								"categories",
+								"uuid",
+								""
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "64ac9317-dc8a-4f12-a4d7-aecddcdeb4b8"
+								},
+								{
+									"key": "token_company",
+									"value": "6d69fccc-16a9-463a-9d3d-9e169f77e0e8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8101/api/categories/?token_company=6d69fccc-16a9-463a-9d3d-9e169f77e0e8",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"api",
+								"categories",
+								""
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "182151b3-072a-4b13-a72b-f32b7df00efb",
+									"disabled": true
+								},
+								{
+									"key": "token_company",
+									"value": "6d69fccc-16a9-463a-9d3d-9e169f77e0e8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"categoria products\",\n    \"description\": \"categoria\"   \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8101/api/categories/uuid/?uuid=64ac9317-dc8a-4f12-a4d7-aecddcdeb4b8&token_company=6d69fccc-16a9-463a-9d3d-9e169f77e0e8",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"api",
+								"categories",
+								"uuid",
+								""
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "64ac9317-dc8a-4f12-a4d7-aecddcdeb4b8"
+								},
+								{
+									"key": "token_company",
+									"value": "6d69fccc-16a9-463a-9d3d-9e169f77e0e8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8100/api/categories/uuid/?uuid=182151b3-072a-4b13-a72b-f32b7df00efb&token_company=6d69fccc-16a9-463a-9d3d-9e169f77e0e8",
+							"host": [
+								"localhost"
+							],
+							"port": "8100",
+							"path": [
+								"api",
+								"categories",
+								"uuid",
+								""
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "182151b3-072a-4b13-a72b-f32b7df00efb"
+								},
+								{
+									"key": "token_company",
+									"value": "6d69fccc-16a9-463a-9d3d-9e169f77e0e8"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Locations",
+			"item": [
+				{
+					"name": "store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"teste 8\",\n    \"localization\": \"teste 8\"   \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8100/api/location?token_company=6d69fccc-16a9-463a-9d3d-9e169f77e0e8",
+							"host": [
+								"localhost"
+							],
+							"port": "8100",
+							"path": [
+								"api",
+								"location"
+							],
+							"query": [
+								{
+									"key": "token_company",
+									"value": "6d69fccc-16a9-463a-9d3d-9e169f77e0e8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get specifi location",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8100/api/categories/uuid/?uuid=182151b3-072a-4b13-a72b-f32b7df00efb&token_company=6d69fccc-16a9-463a-9d3d-9e169f77e0e8",
+							"host": [
+								"localhost"
+							],
+							"port": "8100",
+							"path": [
+								"api",
+								"categories",
+								"uuid",
+								""
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "182151b3-072a-4b13-a72b-f32b7df00efb"
+								},
+								{
+									"key": "token_company",
+									"value": "6d69fccc-16a9-463a-9d3d-9e169f77e0e8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll locations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8100/api/location/?token_company=6d69fccc-16a9-463a-9d3d-9e169f77e0e8",
+							"host": [
+								"localhost"
+							],
+							"port": "8100",
+							"path": [
+								"api",
+								"location",
+								""
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "182151b3-072a-4b13-a72b-f32b7df00efb",
+									"disabled": true
+								},
+								{
+									"key": "token_company",
+									"value": "6d69fccc-16a9-463a-9d3d-9e169f77e0e8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update location",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"padrão\",\n    \"localization\": \"platileira 8\"   \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8100/api/location/uuid/?uuid=d0fa2ee0-5e76-457b-90b3-0d1ad36caf07&token_company=6d69fccc-16a9-463a-9d3d-9e169f77e0e8",
+							"host": [
+								"localhost"
+							],
+							"port": "8100",
+							"path": [
+								"api",
+								"location",
+								"uuid",
+								""
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "d0fa2ee0-5e76-457b-90b3-0d1ad36caf07"
+								},
+								{
+									"key": "token_company",
+									"value": "6d69fccc-16a9-463a-9d3d-9e169f77e0e8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete location",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8100/api/categories/uuid/?uuid=182151b3-072a-4b13-a72b-f32b7df00efb&token_company=6d69fccc-16a9-463a-9d3d-9e169f77e0e8",
+							"host": [
+								"localhost"
+							],
+							"port": "8100",
+							"path": [
+								"api",
+								"categories",
+								"uuid",
+								""
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "182151b3-072a-4b13-a72b-f32b7df00efb"
+								},
+								{
+									"key": "token_company",
+									"value": "6d69fccc-16a9-463a-9d3d-9e169f77e0e8"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "uni",
+			"item": [
+				{
+					"name": "Unit",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8100/api/unit/?token_company=6d69fccc-16a9-463a-9d3d-9e169f77e0e8",
+							"host": [
+								"localhost"
+							],
+							"port": "8100",
+							"path": [
+								"api",
+								"unit",
+								""
+							],
+							"query": [
+								{
+									"key": "token_company",
+									"value": "6d69fccc-16a9-463a-9d3d-9e169f77e0e8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update unit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"mudei de novo \",\n    \"description\": \"teste 8\"   \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8100/api/unit/uuid?uuid=aff5bc88-54fd-46b9-84ea-887fe9002187&token_company=6d69fccc-16a9-463a-9d3d-9e169f77e0e8",
+							"host": [
+								"localhost"
+							],
+							"port": "8100",
+							"path": [
+								"api",
+								"unit",
+								"uuid"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "aff5bc88-54fd-46b9-84ea-887fe9002187"
+								},
+								{
+									"key": "token_company",
+									"value": "6d69fccc-16a9-463a-9d3d-9e169f77e0e8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get unit All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8101/api/unit/?token_company=6d69fccc-16a9-463a-9d3d-9e169f77e0e8",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"api",
+								"unit",
+								""
+							],
+							"query": [
+								{
+									"key": "token_company",
+									"value": "6d69fccc-16a9-463a-9d3d-9e169f77e0e8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post unit",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"metro\",\n    \"description\": \"uni\",\n    \"sigla\": \"MT\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8006/api/unit?token_company=6d69fccc-16a9-463a-9d3d-9e169f77e0e8",
+							"host": [
+								"localhost"
+							],
+							"port": "8006",
+							"path": [
+								"api",
+								"unit"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "aff5bc88-54fd-46b9-84ea-887fe9002187",
+									"disabled": true
+								},
+								{
+									"key": "token_company",
+									"value": "6d69fccc-16a9-463a-9d3d-9e169f77e0e8"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
