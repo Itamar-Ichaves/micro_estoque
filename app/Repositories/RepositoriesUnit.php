@@ -40,12 +40,12 @@ class RepositoriesUnit
      
     
 
-    public function getUnitByUuid( $data)
+    public function getUnitByUuid( $unit, $token_company)
     {
-        //dd($unit['unit']);
+      
         return$data = DB::table($this->table)
-        ->where('token_company', $data["token_company"])
-                    ->where('uuid', $data['unit_uuid'])
+        ->where('token_company', $token_company)
+                    ->where('id', $unit)
                     ->first();
     }
 
@@ -65,22 +65,28 @@ class RepositoriesUnit
         
     }
 
-    function updateUnitByTenant($unit)
+    function updateUnitByTenant($data, $uuid, $token_company)
     {
-
-        $data_updated = DB::table($this->table)
-        ->where('token_company', $unit['token_company'])
-        ->where('uuid', $unit['uuid'])
-        ->update($unit);
-
-        return $data_updated;
+        // Atualiza a unidade
+        DB::table('units')
+            ->where('id', $uuid)
+            ->update([
+                'nome' => $data['nome'],
+                'description' => $data['description'],
+                'sigla' => $data['sigla'],
+                'updated_at' => now(),
+            ]);
+    
+        // Retorna os dados atualizados
+        return DB::table('units')
+            ->where('id', $uuid)
+            ->first();
     }
-
     public function deleteUnit($uuid, $token_company)
     {
         return DB::table($this->table)
         ->where('token_company', $token_company)
-        ->where('uuid', $uuid)
+        ->where('id', $uuid)
         ->delete();
     }
 }

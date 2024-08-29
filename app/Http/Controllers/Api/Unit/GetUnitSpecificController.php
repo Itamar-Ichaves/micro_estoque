@@ -22,9 +22,10 @@ class GetUnitSpecificController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $uuid = $request->input('uuid');
+ 
+        $uuid = $request->input('unit_id');
         $token_company = $request->input('token_company');
-        
+         
         $unit = $this->UnitsService->getUnitByUuid($uuid, $token_company);
         
 

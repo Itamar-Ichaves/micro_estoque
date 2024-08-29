@@ -20,6 +20,6 @@ class CategoryResource extends JsonResource
            // 'emitente' => $this->emitente,  
             'nome' => $this->nome, 
             'description' => $this->description 
-        ];
+        ];  
     }
 }

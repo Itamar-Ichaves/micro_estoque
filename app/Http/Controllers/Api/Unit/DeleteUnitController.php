@@ -25,9 +25,9 @@ class DeleteUnitController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $uuid = $request->input('uuid');
+        $uuid = $request->input('unit_id');
         $token_company = $request->input('token_company');
-
+  
         $unitDeleted =  $this->repository->deleteUnit($uuid, $token_company);
 
         return response()->json([

@@ -32,7 +32,7 @@ class UnitService
 
     public function getUnitByUuid($uuid, $token_company)
     {
-        return $this->unitRepository->getUnitByUuid($uuid);
+        return $this->unitRepository->getUnitByUuid($uuid, $token_company);
     }
 
     function createUnitByTenant($unit)
@@ -42,10 +42,10 @@ class UnitService
 
     }
 
-    function updateUnitByTenant($unit)
+    function updateUnitByTenant($data, $uuid, $token_company)
     {
       
-       return $this->unitRepository->updateUnitByTenant($unit);
+       return $this->unitRepository->updateUnitByTenant($data, $uuid, $token_company);
 
         
 
@@ -54,6 +54,7 @@ class UnitService
 
     public function deleteUnit($uuid, $token_company)
     {
+         
          return $this->unitRepository->deleteUnit($uuid, $token_company);
        
     }

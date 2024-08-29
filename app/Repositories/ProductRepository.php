@@ -57,7 +57,7 @@ class ProductRepository
     {
         return DB::table($this->table)
             ->where('token_company', $product['token_company'])
-            ->where('id', $product['id'])
+            ->where('id', $product['uuid'])
             ->update($product);
     }
 
@@ -148,8 +148,8 @@ class ProductRepository
         ];
 
        
-        $unities = $this->repository->create($data);
+            $productNew = $this->repository->create($data);
 
-        return $unities;
+            return $productNew;
     }
 }

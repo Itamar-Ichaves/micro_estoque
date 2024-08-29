@@ -53,12 +53,21 @@ class RepositoriesCategory
        
     }
     
-    public function updateCategoryByTenant(array $data)
+    public function updateCategoryByTenant(array $data, $category_id)
     {
-        return $this->model
-            ->where('token_company', $data['token_company'])
-            ->where('id', $data['id'])
-            ->update($data);
+      
+          DB::table('categories')
+      // ->where('token_company', $data['token_company'])
+        ->where('id', $category_id)
+        ->update([
+            'nome' => $data['nome'],
+            'description' => $data['description'],
+            'updated_at' => now(), // Opcional, se quiser atualizar a coluna 'updated_at'
+        ]);
+        return DB::table('categories')
+            ->where('id', $category_id)
+            ->first();
+           
     }
 
     public function deleteCategory(string $categoryUuid, string $tokenCompany)

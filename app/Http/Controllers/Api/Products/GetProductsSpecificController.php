@@ -22,9 +22,9 @@ class GetProductsSpecificController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $productUuid = $request->input('uuid');
+        $productUuid = $request->input('product_id');
         $tokenCompany = $request->input('token_company');
-
+        
         $product = $this->productService->getProductByUuid($productUuid, $tokenCompany);
 
         return new ProductResource($product);

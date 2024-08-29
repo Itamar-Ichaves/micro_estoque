@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Category;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
 use App\Http\Resources\CategoryResource;
 use App\Services\CategoryService;
 use Illuminate\Http\Request;
@@ -23,14 +24,15 @@ class UpdateCategoriesController extends Controller
     public function __invoke(Request $request)
     {
         $categoryData = $request->all();
-
-        $updatedCategory = $this->categoryService->updateCategoryByTenant($categoryData);
+        $category_id = $request->category_id;
+      
+        $updatedCategory = $this->categoryService->updateCategoryByTenant($categoryData, $category_id);
 
         
         return response()->json([
             'success' => true,
-            'message' => 'Categoria alterada com sucesso',
+            'message' => 'Categoria Criada com Sucesso',
             'data' => new CategoryResource( $updatedCategory)
-        ], Response::HTTP_OK);
+        ], Response::HTTP_CREATED);
     }
 }

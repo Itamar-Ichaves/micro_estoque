@@ -24,9 +24,11 @@ class UpdateUnitController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $unitUpdate = $this->unitService->updateUnitByTenant($request->all());
+        $uuid = $request->input('unit_id');
+        $token_company = $request->input('token_company');
+        $unitUpdate = $this->unitService->updateUnitByTenant($request->all(), $uuid, $token_company);
 
-           // dd($request->all(),$request->uuid);
+            
            return response()->json([
             'success' => true,
             'message' => 'Unidade alterada com sucesso',

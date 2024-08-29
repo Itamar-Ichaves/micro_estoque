@@ -14,13 +14,11 @@ class UnitResource extends JsonResource
      */
     public function toArray($request)
     {
-        
-        
         return [
-            "id"=> $this->id,
-            "nome"=> $this->nome,
-            "description"=> $this->description,
-            'sigla' => $this->sigla
+            "id" => $this->id,  // Adaptado para UUID
+            "nome" => $this->nome,
+            "description" => $this->description,
+            "sigla" => $this->sigla
         ];
     }
 }

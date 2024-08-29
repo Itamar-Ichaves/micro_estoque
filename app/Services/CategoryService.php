@@ -42,10 +42,10 @@ class CategoryService
     
     }
 
-    function updateCategoryByTenant( $category)
+    function updateCategoryByTenant( $category, $category_id)
     {
       
-       return $this->categoryRepository->updateCategoryByTenant($category);
+       return $this->categoryRepository->updateCategoryByTenant($category, $category_id);
 
         
 
