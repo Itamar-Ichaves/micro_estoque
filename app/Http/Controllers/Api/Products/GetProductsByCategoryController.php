@@ -26,8 +26,10 @@ class GetProductsByCategoryController extends Controller
             'category_uuid' => 'required|uuid'
         ]);
 
-        // Obtém os produtos pela categoria
-        $products = $this->productService->getProductsByCategory($request);
+        $token_company = $request->input('token_company');
+        $token_loja = $request->input('token_loja');
+
+        $products = $this->productService->getProductsByCategory($token_company, $token_loja, $request);
 
         // Retorna uma resposta bem-sucedida com os produtos
         return response()->json([

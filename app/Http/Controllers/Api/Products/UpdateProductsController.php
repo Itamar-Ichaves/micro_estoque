@@ -21,8 +21,11 @@ class UpdateProductsController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $token_company = $request->input('token_company');
+        $token_loja = $request->input('token_loja');
+        $id = $request->input('id');
         // Atualiza o produto com base nos dados fornecidos
-        $product = $this->productService->updateProductsByTenant($request->all());
+        $product = $this->productService->updateProductsByTenant($token_company, $token_loja, $id);
 
         // Retorna a resposta JSON com o status de sucesso
         return response()->json([

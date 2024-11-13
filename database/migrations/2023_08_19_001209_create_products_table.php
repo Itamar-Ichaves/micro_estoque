@@ -13,100 +13,45 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('token_company'); 
-            $table->uuid('emitente')->nullable();  
+            $table->uuid('token_company'); // Identificador da empresa (multi-tenant)
+            $table->uuid('token_loja')->nullable();
+            
+            //relashionship
+            $table->uuid('category_uuid')->nullable();
+            $table->uuid('group_uuid')->nullable();
 
-            $table->string('nome', 50);
-            $table->string('gtin', 20)->nullable();
-            $table->string('codigo_barra', 20)->nullable();
-            $table->string('sku', 20)->nullable();
-            $table->string('gtin_trib', 20)->nullable();
-            $table->string('imagem')->nullable();    
-            $table->string('origem', 10)->nullable();
-            $table->string('usa_grade')->nullable();
+            // Identificação do Produto
+            $table->string('cProd', 60); // Código do produto (tag <cProd>)
+            $table->string('xProd', 120); // Descrição do produto (tag <xProd>)
+            $table->string('NCM', 8); // Código NCM (tag <NCM>)
+            $table->string('CEST', 7)->nullable(); // Código CEST (tag <CEST>, opcional)
+            $table->string('uCom', 6); // Unidade de medida (tag <uCom>, ex: UN, KG)
+            $table->decimal('qCom', 10, 3); // Quantidade comercial (tag <qCom>)
+            $table->decimal('vUnCom', 15, 2); // Valor unitário (tag <vUnCom>)
+            $table->decimal('vProd', 15, 2); // Valor total do produto (tag <vProd>)
+            $table->decimal('vDesc', 15, 2)->default(0); // Valor do desconto (tag <vDesc>)
+            $table->decimal('vFrete', 15, 2)->default(0); // Valor do frete (tag <vFrete>)
+            $table->decimal('vSeg', 15, 2)->default(0); // Valor do seguro (tag <vSeg>)
+            $table->decimal('vOutro', 15, 2)->default(0); // Outras despesas (tag <vOutro>)
+            $table->string('CFOP', 4); // CFOP (Código Fiscal de Operações e Prestações) (tag <CFOP>)
+            $table->string('cEAN', 13)->nullable(); // Código EAN do produto (tag <cEAN>, opcional)
+            $table->string('orig', 1); // Origem do produto (tag <orig>, 0-Nacional, 1-Estrangeira)
 
-            $table->uuid('status_uuid')->nullable();
-            $table->uuid('tipo_produto_uuid')->nullable();
-            $table->uuid('category_uuid')->nullable();            
-            $table->uuid('localizacao_uuid')->nullable();
-            $table->uuid('unit_uuid')->nullable();
-            $table->decimal('perc_gni', 10, 2)->nullable()->default(0);
-            $table->decimal('valor_partida', 10, 2)->nullable()->default(0);
-            $table->decimal('perc_gnn', 10, 2)->nullable()->default(0);
-            $table->decimal('perc_glp', 10, 2)->nullable()->default(0);
-
-            $table->string('codigo_anp', 10)->nullable();
-            $table->string('unidade_pdv', 10)->nullable();
-            $table->string('referencia', 50)->nullable();
-
-            $table->decimal('qtde_venda', 10, 2)->nullable()->default(0);
-            $table->decimal('fragmentacao_qtde', 10, 2)->nullable()->default(0);
-            $table->string('fragmentacao_unidade', 10)->nullable();
-            $table->decimal('fragmentacao_valor', 10, 2)->nullable()->default(0);
-
-            $table->decimal('valor_venda_atacado', 10, 2)->nullable()->default(0);
-            $table->decimal('valor_atacado_apartir', 10, 2)->nullable()->default(0);
-            $table->decimal('comissao', 10, 2)->nullable()->default(0);
-            $table->decimal('valor_maior', 10, 2)->nullable()->default(0);
-            $table->decimal('valor_venda', 10, 2)->nullable()->default(0);
-            $table->decimal('valor_custo', 10, 2)->nullable()->default(0);
-            $table->decimal('margem_lucro', 10, 2)->nullable()->default(0);
-            $table->decimal('custo_medio', 10, 2)->nullable()->default(0);
-
-            $table->date('validade')->nullable();
-            $table->date('ultima_compra')->nullable();
-
-            $table->decimal('estoque_minimo', 10, 2)->nullable()->default(0);
-            $table->decimal('estoque_maximo', 10, 2)->nullable()->default(0);
-            $table->decimal('estoque_inicial', 10, 2)->nullable()->default(0);
-            $table->decimal('estoque_atual', 10, 2)->nullable()->default(0);           
-
-            $table->string('cfop', 15)->nullable();            
-            $table->string('ncm', 13)->nullable();
-            $table->string('cest', 7)->nullable();
-            $table->string('cbenef', 10)->nullable();
-            $table->string('indescala')->nullable();
-            $table->string('cnpjfabricante', 20)->nullable();
-
-            $table->decimal('pDif', 10, 2)->nullable();
-            $table->decimal('pMVAST', 10, 2)->nullable();
-            $table->decimal('pRedBC', 10, 2)->nullable();
-            $table->decimal('pRedBCST', 10, 2)->nullable();
-            $table->decimal('pICMS', 10, 2)->nullable();
-            $table->decimal('pPIS', 10, 2)->nullable();
-            $table->decimal('pCOFINS', 10, 2)->nullable();
-            $table->decimal('pIPI', 10, 2)->nullable();
-            $table->decimal('aliquotapis', 10, 2)->nullable();
-            $table->decimal('aliquotacofins', 10, 2)->nullable();
-            $table->decimal('aliquotaipi', 10, 2)->nullable();
-            $table->string('tributado_icms')->default('S')->nullable();
-            $table->string('tributado_ipi')->default('S')->nullable();
-            $table->string('tributado_pis')->default('S')->nullable();
-            $table->string('tributado_cofins')->default('S')->nullable();
-
-            $table->string('unidade_tributavel')->default('');
-            $table->decimal('quantidade_tributavel', 10, 2)->default(0);
-
-            // Dados da Loja
-            $table->string('produto_loja')->default('N');
-            $table->string('produto_delivery')->default('N');            
-            $table->string('controlar_estoque')->default('S');
-
-            $table->text('descricao')->nullable();          
-            $table->string('destaque', 1)->nullable()->default('N');            
-            $table->string('cep')->nullable()->default('');
-
-            $table->integer('num_volume')->nullable();
-            $table->decimal('largura', 6, 2)->nullable()->default(0);
-            $table->decimal('comprimento', 6, 2)->nullable()->default(0);
-            $table->decimal('altura', 6, 2)->nullable()->default(0);
-            $table->decimal('peso_liquido', 8, 3)->nullable()->default(0);
-            $table->decimal('peso_bruto', 8, 3)->nullable()->default(0);
+            // Impostos
+            $table->string('modBC', 2); // Modalidade de BC do ICMS (tag <modBC>)
+            $table->decimal('pICMS', 5, 2); // Alíquota do ICMS (tag <pICMS>)
+            $table->decimal('vICMS', 15, 2)->default(0); // Valor do ICMS (tag <vICMS>)
+            $table->decimal('pIPI', 5, 2)->nullable(); // Alíquota de IPI (tag <pIPI>)
+            $table->decimal('vIPI', 15, 2)->default(0); // Valor do IPI (tag <vIPI>)
+            $table->decimal('pPIS', 5, 2)->nullable(); // Alíquota de PIS (tag <pPIS>)
+            $table->decimal('vPIS', 15, 2)->default(0); // Valor do PIS (tag <vPIS>)
+            $table->decimal('pCOFINS', 5, 2)->nullable(); // Alíquota de COFINS (tag <pCOFINS>)
+            $table->decimal('vCOFINS', 15, 2)->default(0); // Valor do COFINS (tag <vCOFINS>)
 
             $table->timestamps();
 
-            // Chaves estrangeiras
-            
+            // Índices para melhorar a consulta, se necessário
+            $table->index(['token_company', 'cProd']);
         });
     }
 

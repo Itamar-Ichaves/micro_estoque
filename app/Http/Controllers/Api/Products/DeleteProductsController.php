@@ -22,9 +22,10 @@ class DeleteProductsController extends Controller
     public function __invoke(Request $request)
     {
         $productUuid = $request->input('uuid');
-        $tokenCompany = $request->input('token_company'); // Obtém o token_company do request
-
-        $this->productService->deleteProduct($productUuid, $tokenCompany);
+        $token_company = $request->input('token_company'); // Obtém o token_company do request
+        $token_loja = $request->input('token_loja');
+       
+        $this->productService->deleteProduct($token_company, $token_loja, $productUuid);
 
         return response()->json([
             'success' => true,

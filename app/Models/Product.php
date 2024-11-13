@@ -9,79 +9,42 @@ class Product extends Model
 {
     use HasFactory;
 
-    public $timestamps = true;
+    protected $table = 'produtos';
+
+     // Chave primária como UUID
+     protected $keyType = 'string';
+
+     public $incrementing = false;
 
     protected $fillable = [
-        'id',
-        'token_company',
-        'emitente',
-        'status_uuid',
-        'tipo_produto_uuid',
-        'category_uuid',
-        'localizacao_uuid',
-        'unit_uuid',
-        'sku',
-        'nome',
-        'gtin',
-        'codigo_barra',
-        'gtin_trib',
-        'imagem',
-        'origem',
-        'usa_grade',
-        'referencia',
-        'qtde_venda',
-        'fragmentacao_qtde',
-        'fragmentacao_unidade',
-        'fragmentacao_valor',
-        'valor_venda_atacado',
-        'valor_atacado_apartir',
-        'comissao',
-        'valor_maior',
-        'valor_venda',
-        'valor_custo',
-        'margem_lucro',
-        'custo_medio',
-        'validade',
-        'ultima_compra',
-        'estoque_minimo',
-        'estoque_maximo',
-        'estoque_inicial',
-        'estoque_atual',
-        'cfop',
-        'ncm',
-        'cest',
-        'cbenef',
-        'indescala',
-        'cnpjfabricante',
-        'pDif',
-        'pMVAST',
-        'pRedBC',
-        'pRedBCST',
-        'pICMS',
-        'pPIS',
-        'pCOFINS',
-        'pIPI',
-        'aliquotapis',
-        'aliquotacofins',
-        'aliquotaipi',
-        'tributado_icms',
-        'tributado_ipi',
-        'tributado_pis',
-        'tributado_cofins',
-        'unidade_tributavel',
-        'quantidade_tributavel',
-        'produto_loja',
-        'produto_delivery',
-        'controlar_estoque',
-        'descricao',
-        'destaque',
-        'cep',
-        'num_volume',
-        'largura',
-        'comprimento',
-        'altura',
-        'peso_liquido',
-        'peso_bruto',
+        'token_company', // Identificador da empresa (multi-tenant)
+        'token_loja', // Identificador da loja (multi-tenant)
+        'category_uuid', // Identificador da categoria (multi-tenant)
+        'group_uuid', // Identificador do grupo (multi-tenant)
+        'cProd', // Código do produto (tag <cProd>)
+        'xProd', // Descrição do produto (tag <xProd>)
+        'NCM', // Código NCM (tag <NCM>)
+        'CEST', // Código CEST (tag <CEST>, opcional)
+        'uCom', // Unidade de medida (tag <uCom>)
+        'qCom', // Quantidade comercial (tag <qCom>)
+        'vUnCom', // Valor unitário (tag <vUnCom>)
+        'vProd', // Valor total (tag <vProd>)
+        'vDesc', // Valor do desconto (tag <vDesc>)
+        'vFrete', // Valor do frete (tag <vFrete>)
+        'vSeg', // Valor do seguro (tag <vSeg>)
+        'vOutro', // Outras despesas (tag <vOutro>)
+        'CFOP', // CFOP (tag <CFOP>)
+        'cEAN', // Código EAN (tag <cEAN>)
+        'orig', // Origem do produto (tag <orig>)
+        'modBC', // Modalidade de ICMS (tag <modBC>)
+        'pICMS', // Alíquota de ICMS (tag <pICMS>)
+        'vICMS', // Valor do ICMS (tag <vICMS>)
+        'pIPI', // Alíquota de IPI (tag <pIPI>)
+        'vIPI', // Valor do IPI (tag <vIPI>)
+        'pPIS', // Alíquota de PIS (tag <pPIS>)
+        'vPIS', // Valor do PIS (tag <vPIS>)
+        'pCOFINS', // Alíquota de COFINS (tag <pCOFINS>)
+        'vCOFINS', // Valor do COFINS (tag <vCOFINS>)
     ];
 
 }

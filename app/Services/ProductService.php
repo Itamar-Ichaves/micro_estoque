@@ -30,9 +30,9 @@ class ProductService
         $this->repositoriesUnit = $repositoriesUnit;
     }
 
-    public function getProductsByTenantUuid(string $tokenCompany)
+    public function getProductsByTenantUuid($token_company, $token_loja)
     {
-        return $this->productRepository->getAllProductsByTenant($tokenCompany);
+        return $this->productRepository->getAllProductsByTenant($token_company, $token_loja);
     }
 
     public function getProductsByCategory($data)
@@ -60,24 +60,24 @@ class ProductService
     }
     
 
-    public function getProductByUuid($productUuid, $tokenCompany)
+    public function getProductByUuid($token_company, $token_loja, $productUuid)
     {
-        return $this->productRepository->getProductByUuid($productUuid, $tokenCompany);
+        return $this->productRepository->getProductByUuid($token_company, $token_loja, $productUuid);
     }
 
-    public function createProductsByTenant(array $productData)
+    public function createProductsByTenant($token_company, $token_loja, array $productData)
     {
  
-        return $this->productRepository->createProduct($productData);
+        return $this->productRepository->createProduct($token_company, $token_loja,$productData);
     }
 
-    public function updateProductsByTenant(array $productData)
+    public function updateProductsByTenant($token_company, $token_loja,array $productData)
     {
-        return $this->productRepository->updateProductByTenant($productData);
+        return $this->productRepository->updateProductByTenant($token_company, $token_loja, $productData);
     }
 
-    public function deleteProduct($productUuid, $tokenCompany)
+    public function deleteProduct($token_company, $token_loja, $productUuid)
     {
-        return $this->productRepository->deleteProduct($productUuid, $tokenCompany);
+        return $this->productRepository->deleteProduct($token_company, $token_loja, $productUuid);
     }
 }
